@@ -43,7 +43,7 @@ The interface stays minimal while delivering the core functionality users actual
 Clone the repository and open `index.html` in your browser.
 
 ```
-git clone https://github.com/Sahil-15052006/Flowtask.git
+git clone https://github.com/Sahil-15052006/FlowTask-Minimal-Productivity-App.git
 ```
 
 No build steps required.
