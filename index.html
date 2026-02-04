@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowTask</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body
+    class=" flex flex-col h-fit text-[#0f1419] p-2 bg-[#F0F7FE] space-y-5 ">
+    <div id="overlayScreen" class="hidden z-50 fixed bg-[#000000]/60 w-full h-full justify-center items-center">
+        <div class="bg-[#FFFFFF] rounded-lg mx-5 my-5 sm:mx-[auto] sm:my-screen/20 sm:w-[500px] sm:h-fit p-5 space-y-3 transition-all">
+            <div class="flex justify-end w-full ">
+                <span id="closeTaskModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                     <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                     </svg>
+                </span>
+            </div>
+            <h1 class="text-2xl">Add New Task</h1>
+            <div>
+                <div>Title</div>
+                <input type="text" id="taskTitle" placeholder="Enter Task" required class="bg-gray-200 ps-2 p-1 mt-1 rounded-lg w-full focus:outline-gray-500">
+            </div>
+            <div>
+                <div>Description</div>
+                <textarea id="taskDescription" placeholder="Enter task description" class="bg-gray-200 ps-2 p-1 mt-1 rounded-lg w-full focus:outline-gray-500 h-[100px] resize-none"></textarea>
+            </div>
+            <div class="flex items-center space-x-5 ">
+                <label for="">High Priority </label>
+                <input type="checkbox"  id="taskPriority" >
+            </div>
+            <button id="addnewTask" class="rounded-lg px-2 py-1 bg-[#000000] text-[#FFFFFF] hover:opacity-80 ">Add New Task</button>
+        </div>
+    </div>
+    <div id="taskUpdateModel" class="hidden z-50 fixed bg-[#000000]/60 w-full h-full justify-center items-center">
+        <div class="bg-[#FFFFFF] rounded-lg mx-5 my-5 sm:mx-[auto] sm:my-screen/20 sm:w-[500px] sm:h-fit p-5 space-y-3 transition-all">
+            <div class="flex justify-end w-full ">
+                <span id="closeTaskUpdateModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                     <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                     </svg>
+                </span>
+            </div>
+            <h1 class="text-2xl">Update Your Task</h1>
+            <div>
+                <div>Title</div>
+                <input type="text" id="updatingTaskTitle" required class="bg-gray-200 ps-2 p-1 mt-1 rounded-lg w-full focus:outline-gray-500">
+            </div>
+            <div>
+                <div>Description</div>
+                <textarea id="updatingTaskDescription" class="bg-gray-200 ps-2 p-1 mt-1 rounded-lg w-full focus:outline-gray-500 h-[100px] resize-none"></textarea>
+            </div>
+            <div class="flex items-center space-x-5 ">
+                <label for="">High Priority </label>
+                <input type="checkbox"  id="updatingTaskPriority" >
+            </div>
+            <button id="updatingTask" class="rounded-lg px-2 py-1 bg-[#000000] text-[#FFFFFF] hover:opacity-80 ">Update Task</button>
+        </div>
+    </div>
+        <header class=" flex flex-col space-y-2 px-2">
+            <div class=" w-full text-4xl font-bold flex space-x-3 pt-2 items-center ">
+                <img src="assets/logo.png" alt="logo" class="h-[50px] w-[50px]">
+                <span class="text-[#3059FB]">FlowTask</span>
+            </div>
+            <div>Organize your tasks efficiently and boost your productivity</div>
+        </header>
+        <main class="overflow-hidden">
+            
+            <section
+                class="grid grid-cols-2 lg:grid-cols-4 gap-1 sm:gap-2 p-1 mt-2 w-full h-fit pe-2 transition-all">
+                <div class="flex border rounded-2xl p-2 sm:p-4 space-x-3 items-center w-full mx-1 bg-[#FFFFFF] border-gray-300">
+                    <img src="assets/totalTaskLogo.png" alt="totalTaskLogo" class="h-[40px] w-[40px] ">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-light">Total Tasks</span>
+                        <span id="totalTasks" class="text-2xl font-bold">0</span>
+                    </div>
+                </div>
+                <div class="flex border rounded-2xl p-2 sm:p-4 space-x-3 items-center w-full mx-1 bg-[#FFFFFF] border-gray-300">
+                    <img src="assets/completedLogo.png" alt="completedTaskLogo" class="h-[40px] w-[40px] ">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-light">Completed Tasks</span>
+                        <span id="completedTasks" class="text-2xl font-bold">0</span>
+                    </div>
+                </div>
+                <div class="flex border rounded-2xl p-2 sm:p-4 space-x-3 items-center w-full mx-1 bg-[#FFFFFF] border-gray-300">
+                    <img src="assets/activeLogo.png" alt="activeTaskLogo" class="h-[40px] w-[40px] ">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-light">Active Tasks</span>
+                        <span id="activeTasks" class="text-2xl font-bold">0</span>
+                    </div>
+                </div>
+                <div class="flex border rounded-2xl p-2 sm:p-4 space-x-3 items-center w-full mx-1 bg-[#FFFFFF] border-gray-300">
+                    <img src="assets/priorityLogo.png" alt="priorityTaskLogo" class="h-[40px] w-[40px] ">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-light">High Priority Tasks</span>
+                        <span id="priorityTasks" class="text-2xl font-bold">0</span>
+                    </div>
+                </div>
+            </section>
+    
+            <section class="p-2 mt-4 ">
+                <div class="flex flex-row space-x-2 w-full h-fit p-2 rounded-lg text-gray-500 items-center bg-gray-200 text-sm max-w-full border-1 border-[#F0F7FE] focus-within:border-1 focus-within:border-gray-400 transition-all">
+                    <span class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                        <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    <input type="search" id="searchInput" placeholder="Search task..." class='bg-gray-200 outline-none w-full'>
+                </div>
+            </section>
+    
+            <section class="p-2 mt-2  ">
+                <div class="rounded-lg space-y-2 items-center p-1  w-full h-fit transition-all" >
+                    <div class=" w-full grid grid-cols-2 gap-2 sm:flex ">
+                        <button id="filterAllTask" class="sm:w-[100px] p-1 bg-[#FFFFFF] border border-gray-300 rounded-lg hover:bg-gray-200 hover:shadow-lg transition">All Task</button>     
+                        <button id="filterActiveTask" class="sm:w-[100px] p-1 bg-[#FFFFFF] border border-gray-300 rounded-lg hover:bg-gray-200 hover:shadow-lg transition">Active</button>     
+                        <button id="filterPriorityTask" class="sm:w-[100px] p-1 bg-[#FFFFFF] border border-gray-300 rounded-lg hover:bg-gray-200 hover:shadow-lg transition">Priority</button>     
+                        <button id="filterCompletedTask" class="sm:w-[100px] p-1 bg-[#FFFFFF] border border-gray-300 rounded-lg hover:bg-gray-200 hover:shadow-lg transition">Completed</button>     
+                    </div>
+                </div>
+            </section>
+    
+            <section class="p-2 mt-2">
+                <div class="w-full">
+                    <button 
+                    id="openTaskModal"
+                    class=" flex bg-[#000000] text-[#FFFFFF] font-bold p-2 rounded-lg space-x-4 justify-center items-center">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                            <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <span class="text-sm">Add New Task</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="p-2 mt-2">
+                <div id="taskType" class="w-[150px] h-fit border border-gray-300 bg-[#FFFFFF] p-1 rounded-lg flex justify-center items-center">All Tasks</div>
+            </section>
+
+            <section id="tasksDivSection" class="flex flex-col space-y-1 mt-2 rounded-lg h-fit mx-2">
+                
+                <div id='noTaskText' class="text-2xl w-full h-fit p-10 justify-center items-center text-gray-500 font-bold text-center">
+                    No Task Added
+                </div>
+            </section>
+        </main>
+        <script src="script.js"></script>
+</body>
+</div>
+</html>

@@ -1,0 +1,9 @@
+body{
+    padding: 0;
+}
+
+.overlay{
+    background: rgba(0, 0, 0, 0.6);
+    opacity:0.5;
+    position: fixed;
+}
