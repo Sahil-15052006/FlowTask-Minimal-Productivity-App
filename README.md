@@ -1,3 +1,5 @@
+<img width="1349" height="680" alt="Screenshot 2026-02-04 192938" src="https://github.com/user-attachments/assets/c9adec30-75a2-41e0-b378-497dbe3eee41" />
+
 # FlowTask — Minimal Productivity App
 
 FlowTask is a clean, fast, and distraction-free task management application built to simplify daily productivity.
